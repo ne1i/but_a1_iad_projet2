@@ -7,6 +7,11 @@ enum
     MAX_NB_CHEVALET_PAQUET = 88
 };
 
+enum
+{
+    NB_LETTRES = 21
+};
+
 typedef struct
 {
     Chevalet chevalets[MAX_NB_CHEVALET_PAQUET];
