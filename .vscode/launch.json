@@ -4,7 +4,7 @@
     {
       "name": "Debug (Windows)",
       "type": "cppvsdbg",
-      "program": "${workspaceFolder}/app.exe",
+      "program": "${workspaceFolder}/src/app.exe",
       "request": "launch",
       "console": "externalTerminal",
       "stopAtEntry": false,
@@ -14,59 +14,12 @@
     {
       "name": "Debug (Linux)",
       "type": "cppdbg",
-      "program": "${workspaceFolder}/app.out",
+      "program": "${workspaceFolder}/src/app.out",
       "request": "launch",
       "externalConsole": false,
       "stopAtEntry": false,
       "cwd": "${workspaceRoot}",
       "preLaunchTask": "Build (GCC)"
-    },
-    {
-      "name": "Launch initial tests (Windows)",
-      "type": "cppvsdbg",
-      "request": "launch",
-      "console": "externalTerminal",
-      "program": "${workspaceFolder}/app.exe",
-      "args": [
-        "<",
-        "${workspaceFolder}/test.txt"
-      ],
-      "stopAtEntry": false,
-      "cwd": "${fileDirname}",
-      "preLaunchTask": "Build (MSVC)"
-    },
-    {
-      "name": "Launch initial tests (Linux)",
-      "type": "cppdbg",
-      "program": "${workspaceFolder}/app.out",
-      "args": [
-        "<",
-        "${workspaceFolder}/test.txt"
-      ],
-      "request": "launch",
-      "externalConsole": false,
-      "stopAtEntry": false,
-      "cwd": "${workspaceRoot}",
-      "preLaunchTask": "Build (GCC)"
-    },
-    {
-      "name": "C/C++ Runner: Debug Session",
-      "type": "cppdbg",
-      "request": "launch",
-      "args": [],
-      "stopAtEntry": false,
-      "externalConsole": true,
-      "cwd": "c:/Users/feron/Documents/dev/c projet/but_a1_iad_projet1",
-      "program": "c:/Users/feron/Documents/dev/c projet/but_a1_iad_projet1/build/Debug/outDebug",
-      "MIMode": "gdb",
-      "miDebuggerPath": "gdb",
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        }
-      ]
     }
   ]
 }
