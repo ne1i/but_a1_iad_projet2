@@ -1,20 +1,21 @@
+#pragma once
+
 typedef char Chevalet;
 
 enum
 {
-    NB_CHEVALET = 88
+    MAX_NB_CHEVALET_PAQUET = 88
 };
 
 typedef struct
 {
-    Chevalet chevalets[NB_CHEVALET];
+    Chevalet chevalets[MAX_NB_CHEVALET_PAQUET];
     int nb_chevalet;
-
 } Paquet;
 
 /**
  * @brief Initialise un paquet
- * 
+ *
  * @param p Paquet qui sera initialisé
  */
-void initPaquet(Paquet p);
+void initPaquet(Paquet *p);
