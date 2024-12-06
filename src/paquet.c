@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <time.h>
 
 #include "headers/paquet.h"
 
@@ -16,5 +18,19 @@ void initPaquet(Paquet *p)
             p->chevalets[ind] = tab_lettres[i];
             ++ind;
         }
+    }
+    melangePaquet(p);
+}
+
+void melangePaquet(Paquet *p)
+{
+    char temp;
+    int rand_ind;
+    for (int i = MAX_NB_CHEVALET_PAQUET - 1; i >= 0; --i)
+    {
+        rand_ind = rand() % (i + 1);
+        temp = p->chevalets[i];
+        p->chevalets[i] = p->chevalets[rand_ind];
+        p->chevalets[rand_ind] = temp;
     }
 }

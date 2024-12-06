@@ -24,3 +24,9 @@ typedef struct
  * @param p Paquet qui sera initialisé
  */
 void initPaquet(Paquet *p);
+/**
+ * @brief Melange un paquet
+ *
+ * @param p Paquet qui sera mélangé
+ */
+void melangePaquet(Paquet *p);
