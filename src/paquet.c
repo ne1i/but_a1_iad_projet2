@@ -24,6 +24,7 @@ void initPaquet(Paquet *p)
 
 void melangePaquet(Paquet *p)
 {
+    srand(time(NULL));
     char temp;
     int rand_ind;
     for (int i = MAX_NB_CHEVALET_PAQUET - 1; i >= 0; --i)
