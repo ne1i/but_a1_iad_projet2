@@ -10,7 +10,7 @@
       "command": "gcc",
       "args": [
         "-g",
-        "${workspaceFolder}/src/app.c",
+        "${workspaceFolder}/src/*.c",
         "-o",
         "${workspaceFolder}/src/app.out"
       ],
