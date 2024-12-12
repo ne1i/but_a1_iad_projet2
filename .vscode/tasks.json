@@ -14,27 +14,30 @@
         "-o",
         "${workspaceFolder}/src/app.out"
       ],
-      "problemMatcher": ["$gcc"]
+      "problemMatcher": [
+        "$gcc"
+      ]
     },
     {
       "type": "process",
       "label": "Build (MSVC)",
       "group": {
         "kind": "build",
-        "isDefault": true
+        "isDefault": false
       },
       "command": "cl",
       "args": [
-        "/W4",
         "/analyze",
         "/TC",
         "/Zi",
         "/Od",
         "/nologo",
-        "/Fe${workspaceFolder}/src/app.exe",
-        "${workspaceFolder}/src/app.c"
+        "/Fe${workspaceFolder}\\src\\app.exe",
+        "${workspaceFolder}\\src\\*.c"
       ],
-      "problemMatcher": ["$msCompile"]
+      "problemMatcher": [
+        "$msCompile"
+      ]
     }
   ],
   "version": "2.0.0"

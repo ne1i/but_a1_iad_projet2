@@ -1,7 +1,6 @@
 #pragma once
 
 #include "main.h"
-#include "partie.h"
 
 enum
 {
@@ -18,4 +17,4 @@ typedef struct
  *
  * @param j Joueur qui sera initialisé
  */
-void initJoueur(Joueur *j, Partie *p);
+void initJoueur(Joueur *j, Main m);

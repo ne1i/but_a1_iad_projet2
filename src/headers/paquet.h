@@ -15,7 +15,7 @@ enum
 typedef struct
 {
     Chevalet chevalets[MAX_NB_CHEVALET_PAQUET];
-    int nb_chevalet;
+    int nb_chevalet_restants;
 } Paquet;
 
 /**
