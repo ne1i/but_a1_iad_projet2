@@ -4,13 +4,14 @@
 
 enum
 {
-    MAX_NB_CHEVALET_MAIN = 12
+    MAX_NB_CHEVALET_MAIN = 20,
+    NB_CHEVALET_INITIAL_MAIN = 12
 };
 
 typedef struct
 {
     Chevalet chevalets[MAX_NB_CHEVALET_MAIN];
-    int nb_chevalet;
+    int nb_chevalet_restants;
 } Main;
 
 /**
@@ -18,4 +19,4 @@ typedef struct
  *
  * @param main Main qui sera initialisée
  */
-void initMain(Main main);
+void initMain(Main *m, Paquet *p);

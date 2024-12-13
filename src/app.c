@@ -3,7 +3,7 @@
 
 int main()
 {
-    // Partie p;
-    // initPartie(&p);
-    // return 0;
+    Partie p;
+    initPartie(&p);
+    return 0;
 }
