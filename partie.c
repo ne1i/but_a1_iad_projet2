@@ -15,4 +15,7 @@ void initPartie(Partie *p)
     Joueur *j2 = &p->tab_joueurs[1];
     initJoueur(j1, m1);
     initJoueur(j2, m2);
+
+    Rail *rail = &p->rail;
+    initRail(rail);
 }

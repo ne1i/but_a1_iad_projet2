@@ -20,3 +20,10 @@ typedef struct
  * @param main Main qui sera initialisée
  */
 void initMain(Main *m, Paquet *p);
+
+/**
+ * @brief Affiche le contenu d'une main
+ *
+ * @param m Main dont le contenu sera affiché
+ */
+void afficheMain(Main *m);
