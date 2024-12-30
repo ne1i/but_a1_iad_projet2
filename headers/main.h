@@ -26,4 +26,4 @@ void initMain(Main *m, Paquet *p);
  *
  * @param m Main dont le contenu sera affiché
  */
-void afficheMain(Main *m);
+void afficheMain(const Main *m);

@@ -1,9 +1,9 @@
-#include "headers/paquet.h"
 #include "headers/partie.h"
 
 int main()
 {
-    Partie p;
+    Partie p = {0};
     initPartie(&p);
+    // boucleDeJeu(&p);
     return 0;
 }
