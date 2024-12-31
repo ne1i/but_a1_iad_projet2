@@ -36,7 +36,7 @@ void boucleDeJeu(Partie *p, FILE *f)
     printf("\n");
 
     Chevalet motJ1[TAILLE_MAX_MOT + 1] = {0};
-    while (!verifierMot(motJ1, f))
+    while (!mainContientChaine(&j1->main, motJ1) || !verifierMot(motJ1, f))
     {
         printf("1> ");
         scanf("%5s", motJ1);
@@ -44,7 +44,7 @@ void boucleDeJeu(Partie *p, FILE *f)
     }
 
     Chevalet motJ2[TAILLE_MAX_MOT + 1] = {0};
-    while (!verifierMot(motJ2, f))
+    while (!mainContientChaine(&j2->main, motJ2) || !verifierMot(motJ2, f))
     {
         printf("2> ");
         scanf("%5s", motJ2);
