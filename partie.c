@@ -51,7 +51,11 @@ void boucleDeJeu(Partie *p, FILE *f)
         nettoyer_stdin();
     }
 
-    printf("caca");
+    printf("1 : ");
+    afficheMain(&j1->main);
+    printf("2 : ");
+    afficheMain(&j2->main);
+    printf("\n");
     while (1)
     {
     }
