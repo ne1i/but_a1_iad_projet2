@@ -27,7 +27,7 @@ void initPartie(Partie *p);
  *
  * @param p Les informations de la partie
  */
-void boucleDeJeu(Partie *p);
+void boucleDeJeu(Partie *p, FILE *f);
 
 /**
  * @brief Vérifie si le mot saisi est valide (sa longueur est de 4 lettres et il est pas dans le dictionnaire
@@ -35,4 +35,4 @@ void boucleDeJeu(Partie *p);
  *
  * @param mot
  */
-int verifierMot(const char *mot);
+int verifierMot(const char *mot, FILE *f);

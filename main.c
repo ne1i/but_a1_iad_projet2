@@ -28,3 +28,7 @@ void afficheMain(const Main *m)
     }
     printf("\n");
 }
+
+// int mainContientChaine(const Main *m, const char *chaine)
+// {
+// }

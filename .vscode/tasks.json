@@ -14,7 +14,9 @@
         "-o",
         "${workspaceFolder}/app.out"
       ],
-      "problemMatcher": ["$gcc"]
+      "problemMatcher": [
+        "$gcc"
+      ]
     },
     {
       "type": "process",
@@ -25,6 +27,7 @@
       },
       "command": "cl",
       "args": [
+        "/wd6031",
         "/analyze",
         "/TC",
         "/Zi",
@@ -33,7 +36,9 @@
         "/Fe${workspaceFolder}\\app.exe",
         "${workspaceFolder}\\*.c"
       ],
-      "problemMatcher": ["$msCompile"]
+      "problemMatcher": [
+        "$msCompile"
+      ]
     },
     {
       "type": "cppbuild",
@@ -49,7 +54,9 @@
       "options": {
         "cwd": "${fileDirname}"
       },
-      "problemMatcher": ["$gcc"],
+      "problemMatcher": [
+        "$gcc"
+      ],
       "group": {
         "kind": "build",
         "isDefault": true

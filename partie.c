@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "headers/partie.h"
 #include "headers/utils.h"
+#include "headers/partie.h"
+#include "headers/dictionnaire.h"
 
 void initPartie(Partie *p)
 {
@@ -23,7 +24,7 @@ void initPartie(Partie *p)
     initRail(rail);
 }
 
-void boucleDeJeu(Partie *p)
+void boucleDeJeu(Partie *p, FILE *f)
 {
     Joueur *j1 = &p->tab_joueurs[0];
     Joueur *j2 = &p->tab_joueurs[1];
@@ -34,38 +35,39 @@ void boucleDeJeu(Partie *p)
     afficheMain(&j2->main);
     printf("\n");
 
-    Chevalet motJ1[TAILLE_PREMIER_MOT + 1] = {0};
-    while (!verifierMot(motJ1))
+    Chevalet motJ1[TAILLE_MAX_MOT + 1] = {0};
+    while (!verifierMot(motJ1, f))
     {
         printf("1> ");
         scanf("%5s", motJ1);
+        nettoyer_stdin();
     }
 
-    Chevalet motJ2[TAILLE_PREMIER_MOT + 1] = {0};
-    while (!verifierMot(motJ2))
+    Chevalet motJ2[TAILLE_MAX_MOT + 1] = {0};
+    while (!verifierMot(motJ2, f))
     {
         printf("2> ");
         scanf("%5s", motJ2);
+        nettoyer_stdin();
     }
 
+    printf("caca");
     while (1)
     {
     }
 }
 
-int verifierMot(const char *mot)
+int verifierMot(const char *mot, FILE *f)
 {
     if (strlen(mot) != TAILLE_PREMIER_MOT)
     {
         return 0;
     }
 
-    if (!dict_contains(mot))
+    if (!dictionnaire_contient(mot, f))
     {
         return 0;
     }
 
     return 1;
-
-    // Vérifier que le mot est dans le dico
 }

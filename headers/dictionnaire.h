@@ -1,12 +1,17 @@
 #pragma once
-
-#define DICT_FILE_NAME "ods4.txt"
-#include "utils.h"
-
 #include <stdlib.h>
 
-char **dictionnaire = 0;
+#define DICT_FILE_NAME "ods4.txt"
 
-int dictionnaire_contient(const char *mot);
+enum
+{
+    TAILLE_MAX_MOT = 29
+};
 
-void charger_dictionnaire();
+/**
+ * @brief Renvoie 1 si le dictionnaire contient le mot, 0 sinon
+ *
+ * @param mot Le mot qui sera cherché dans le dictionnaire
+ * @return int
+ */
+int dictionnaire_contient(const char *mot, FILE *f);

@@ -27,3 +27,12 @@ void initMain(Main *m, Paquet *p);
  * @param m Main dont le contenu sera affiché
  */
 void afficheMain(const Main *m);
+
+/**
+ * @brief Renvoie 1 si la main m contient les lettre nécessaires à former la chaine
+ *
+ * @param m main dont on vérifie les chevalets
+ * @param chaine chaine de caractère d'au plus 8 caractères
+ * @return int
+ */
+int mainContientChaine(const Main *m, const char *chaine);
