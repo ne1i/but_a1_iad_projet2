@@ -5,6 +5,7 @@
 #include "headers/utils.h"
 #include "headers/main.h"
 #include "headers/dictionnaire.h"
+#include "headers/partie.h"
 
 void initMain(Main *m, Paquet *p)
 {
@@ -25,16 +26,12 @@ void initMain(Main *m, Paquet *p)
 
 void afficheMain(const Main *m)
 {
-    for (int i = 0; m->chevalets[i] != 0; ++i)
-    {
-        printf("%c", m->chevalets[i]);
-    }
-    printf("\n");
+    printf("%s\n", m->chevalets);
 }
 
 int mainContientChaine(const Main *m, const char *chaine)
 {
-    int tab_code_chaine[TAILLE_MAX_MOT + 1] = {0};
+    int tab_code_chaine[NB_CHEVALET_RAIL + 1] = {0};
     int tab_occurences_lettres[NB_CARACTERES_ASCII] = {0};
     for (int i = 0; m->chevalets[i] != 0; ++i)
     {

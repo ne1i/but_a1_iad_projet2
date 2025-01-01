@@ -3,11 +3,6 @@
 
 #define DICT_FILE_NAME "ods4.txt"
 
-enum
-{
-    TAILLE_MAX_MOT = 29
-};
-
 /**
  * @brief Renvoie 1 si le dictionnaire contient le mot, 0 sinon
  *

@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "headers/dictionnaire.h"
+#include "headers/partie.h"
 
 int dictionnaire_contient(const char *mot, FILE *f)
 {

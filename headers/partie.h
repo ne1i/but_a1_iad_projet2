@@ -13,6 +13,11 @@ enum
     TAILLE_PREMIER_MOT = 4
 };
 
+enum
+{
+    TAILLE_MAX_MOT = 29
+};
+
 typedef struct
 {
     Joueur tab_joueurs[NB_JOUEUR];
@@ -41,3 +46,4 @@ void boucleDeJeu(Partie *p, FILE *f);
  * @param mot
  */
 int verifierMot(const char *mot, FILE *f);
+int verifierMotDepart(const char *mot, FILE *f);

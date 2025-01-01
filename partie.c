@@ -35,8 +35,8 @@ void boucleDeJeu(Partie *p, FILE *f)
     afficheMain(&j2->main);
     printf("\n");
 
-    Chevalet motJ1[TAILLE_MAX_MOT + 1] = {0};
-    while (!mainContientChaine(&j1->main, motJ1) || !verifierMot(motJ1, f))
+    Chevalet motJ1[TAILLE_PREMIER_MOT + 1] = {0};
+    while (!mainContientChaine(&j1->main, motJ1) || !verifierMotDepart(motJ1, f))
     {
         printf("1> ");
         scanf("%5s", motJ1);
@@ -44,8 +44,8 @@ void boucleDeJeu(Partie *p, FILE *f)
     }
     joueurPose(j1, motJ1);
 
-    Chevalet motJ2[TAILLE_MAX_MOT + 1] = {0};
-    while (!mainContientChaine(&j2->main, motJ2) || !verifierMot(motJ2, f))
+    Chevalet motJ2[TAILLE_PREMIER_MOT + 1] = {0};
+    while (!mainContientChaine(&j2->main, motJ2) || !verifierMotDepart(motJ2, f))
     {
         printf("2> ");
         scanf("%5s", motJ2);
@@ -63,9 +63,24 @@ void boucleDeJeu(Partie *p, FILE *f)
     }
 }
 
-int verifierMot(const char *mot, FILE *f)
+int verifierMotDepart(const char *mot, FILE *f)
 {
     if (strlen(mot) != TAILLE_PREMIER_MOT)
+    {
+        return 0;
+    }
+
+    if (!dictionnaire_contient(mot, f))
+    {
+        return 0;
+    }
+
+    return 1;
+}
+
+int verifierMot(const char *mot, FILE *f)
+{
+    if (strlen(mot) > NB_CHEVALET_RAIL)
     {
         return 0;
     }
