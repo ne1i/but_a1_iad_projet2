@@ -36,3 +36,11 @@ void afficheMain(const Main *m);
  * @return int
  */
 int mainContientChaine(const Main *m, const char *chaine);
+
+/**
+ * @brief Supprime un chevalet d'une main
+ *
+ * @param m Main
+ * @param c Chevalet qui sera supprimé de la main
+ */
+void retirerChevaletMain(Main *m, const Chevalet c);

@@ -56,3 +56,20 @@ int mainContientChaine(const Main *m, const char *chaine)
     }
     return 1;
 }
+
+void retirerChevaletMain(Main *m, const Chevalet c)
+{
+    for (int i = 0; i < m->nb_chevalet_restants; ++i)
+    {
+        if (m->chevalets[i] == c)
+        {
+            for (int j = i; j < m->nb_chevalet_restants - 1; ++j)
+            {
+                m->chevalets[j] = m->chevalets[j + 1];
+            }
+            break;
+        }
+    }
+    --m->nb_chevalet_restants;
+    m->chevalets[m->nb_chevalet_restants] = 0;
+}

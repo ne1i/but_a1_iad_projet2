@@ -42,6 +42,7 @@ void boucleDeJeu(Partie *p, FILE *f)
         scanf("%5s", motJ1);
         nettoyer_stdin();
     }
+    joueurPose(j1, motJ1);
 
     Chevalet motJ2[TAILLE_MAX_MOT + 1] = {0};
     while (!mainContientChaine(&j2->main, motJ2) || !verifierMot(motJ2, f))
@@ -50,6 +51,7 @@ void boucleDeJeu(Partie *p, FILE *f)
         scanf("%5s", motJ2);
         nettoyer_stdin();
     }
+    joueurPose(j2, motJ2);
 
     printf("1 : ");
     afficheMain(&j1->main);

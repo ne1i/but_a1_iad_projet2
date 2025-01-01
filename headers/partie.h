@@ -5,6 +5,11 @@
 
 enum
 {
+    NB_JOUEUR = 2
+};
+
+enum
+{
     TAILLE_PREMIER_MOT = 4
 };
 
