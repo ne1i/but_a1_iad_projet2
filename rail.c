@@ -1,7 +1,9 @@
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "headers/rail.h"
+#include "headers/partie.h"
 
 void initRail(Rail *rail)
 {
@@ -24,6 +26,24 @@ void afficherRail(const Rail *rail)
         printf("%c", rail->chevalets_verso[i]);
     }
     printf("\n");
+}
+
+void remplirRail(Rail *rail, const char *mot1, const char *mot2)
+{
+    char motConcat[(TAILLE_PREMIER_MOT * 2) + 1] = {0};
+    if (strcmp(mot1, mot2) < 0)
+    {
+        strcpy(motConcat, mot1);
+        strcpy(&motConcat[TAILLE_PREMIER_MOT], mot2);
+        strcpy(rail->chevalets_recto, motConcat);
+    }
+    if (strcmp(mot1, mot2) > 0)
+    {
+        strcpy(motConcat, mot2);
+        strcpy(&motConcat[TAILLE_PREMIER_MOT], mot1);
+        strcpy(rail->chevalets_recto, motConcat);
+    }
+    strcpy(rail->chevalets_verso, inverseStr(rail->chevalets_recto));
 }
 
 void ajouterMotRail(Rail *rail, const char *mot, char cote)

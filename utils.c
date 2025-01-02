@@ -77,3 +77,19 @@ int ajouterMot(MotPoses *mot_poses, const char *mot)
     mot_poses->nb_elements++;
     return 0;
 }
+
+char *inverseStr(char *s)
+{
+    if (s == NULL)
+    {
+        return NULL;
+    }
+
+    int len = strlen(s);
+    char *strInv = (char *)calloc(len + 1, sizeof(char));
+    for (int i = 0; i < len; ++i)
+    {
+        strInv[i] = s[len - 1 - i];
+    }
+    return strInv;
+}

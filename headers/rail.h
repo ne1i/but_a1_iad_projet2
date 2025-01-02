@@ -8,8 +8,9 @@ enum
 
 typedef struct
 {
-    Chevalet chevalets_recto[NB_CHEVALET_RAIL];
-    Chevalet chevalets_verso[NB_CHEVALET_RAIL];
+    Chevalet chevalets_recto[NB_CHEVALET_RAIL + 1];
+    Chevalet chevalets_verso[NB_CHEVALET_RAIL + 1];
+
 } Rail;
 
 /**
@@ -25,6 +26,15 @@ void initRail(Rail *rail);
  * @param rail rail qui sera affiché
  */
 void afficherRail(const Rail *rail);
+
+/**
+ * @brief Remplis le rail avec les 2 mots de 4 lettres dans l'ordre alphabétique
+ *
+ * @param rail rail qui sera rempli
+ * @param mot1 mot qui sera ajouté au rail
+ * @param mot2 mot qui sera ajouté au rail
+ */
+void remplirRail(Rail *rail, const char *mot1, const char *mot2);
 
 /**
  * @brief Ajoute un mot au rail sans vérification

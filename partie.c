@@ -59,6 +59,7 @@ void boucleDeJeu(Partie *p, FILE *f, MotPoses *mot_poses)
     printf("2 : ");
     afficherMain(&j2->main);
     printf("\n");
+    remplirRail(&p->rail, motJ1, motJ2);
     afficherRail(&p->rail);
     while (1)
     {

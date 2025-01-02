@@ -43,3 +43,10 @@ int redimensionnerMotPoses(MotPoses *mot_poses, int nvlCapacite);
  * @return int
  */
 int ajouterMot(MotPoses *mot_poses, const char *mot);
+
+/**
+ * @brief Renvoie la string s inversée mais ne la modifie pas
+ *
+ * @param s string qui sera inversée
+ */
+char *inverseStr(char *s);
