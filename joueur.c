@@ -8,7 +8,7 @@ void initJoueur(Joueur *j, Main m)
     j->main = m;
 }
 
-void joueurPose(Joueur *j, const char *mot, MotPoses *mot_poses)
+void joueurPose(Joueur *j, const char *mot, MotPoses *mot_poses, Rail *rail)
 {
     for (int i = 0; i < strlen(mot); ++i)
     {

@@ -26,7 +26,7 @@ void initMain(Main *m, Paquet *p);
  *
  * @param m Main dont le contenu sera affiché
  */
-void afficheMain(const Main *m);
+void afficherMain(const Main *m);
 
 /**
  * @brief Renvoie 1 si la main m contient les lettre nécessaires à former la chaine

@@ -2,6 +2,7 @@
 
 #include "main.h"
 #include "utils.h"
+#include "rail.h"
 
 typedef struct
 {
@@ -22,4 +23,4 @@ void initJoueur(Joueur *j, Main m);
  * @param j joueur affecté
  * @param mot mot qui sera retiré de la main du joueur
  */
-void joueurPose(Joueur *j, const char *mot, MotPoses *mot_poses);
+void joueurPose(Joueur *j, const char *mot, MotPoses *mot_poses, Rail *rail);

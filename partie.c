@@ -31,9 +31,9 @@ void boucleDeJeu(Partie *p, FILE *f, MotPoses *mot_poses)
     Joueur *j2 = &p->tab_joueurs[1];
 
     printf("1 : ");
-    afficheMain(&j1->main);
+    afficherMain(&j1->main);
     printf("2 : ");
-    afficheMain(&j2->main);
+    afficherMain(&j2->main);
     printf("\n");
 
     Chevalet motJ1[TAILLE_PREMIER_MOT + 1] = {0};
@@ -43,7 +43,7 @@ void boucleDeJeu(Partie *p, FILE *f, MotPoses *mot_poses)
         scanf("%5s", motJ1);
         nettoyer_stdin();
     }
-    joueurPose(j1, motJ1, mot_poses);
+    joueurPose(j1, motJ1, mot_poses, &p->rail);
 
     Chevalet motJ2[TAILLE_PREMIER_MOT + 1] = {0};
     while (!mainContientChaine(&j2->main, motJ2) || !verifierMotDepart(motJ2, f) || !motDejaPose(mot_poses, motJ2))
@@ -52,13 +52,14 @@ void boucleDeJeu(Partie *p, FILE *f, MotPoses *mot_poses)
         scanf("%5s", motJ2);
         nettoyer_stdin();
     }
-    joueurPose(j2, motJ2, mot_poses);
+    joueurPose(j2, motJ2, mot_poses, &p->rail);
 
     printf("1 : ");
-    afficheMain(&j1->main);
+    afficherMain(&j1->main);
     printf("2 : ");
-    afficheMain(&j2->main);
+    afficherMain(&j2->main);
     printf("\n");
+    afficherRail(&p->rail);
     while (1)
     {
     }

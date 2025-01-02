@@ -24,7 +24,7 @@ void initMain(Main *m, Paquet *p)
     p->nb_chevalet_restants -= NB_CHEVALET_INITIAL_MAIN;
 }
 
-void afficheMain(const Main *m)
+void afficherMain(const Main *m)
 {
     printf("%s\n", m->chevalets);
 }
