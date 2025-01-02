@@ -4,6 +4,7 @@
 #include "headers/utils.h"
 #include "headers/partie.h"
 #include "headers/dictionnaire.h"
+#include "headers/paquet.h"
 
 void initPartie(Partie *p)
 {
@@ -24,7 +25,7 @@ void initPartie(Partie *p)
     initRail(rail);
 }
 
-void boucleDeJeu(Partie *p, FILE *f)
+void boucleDeJeu(Partie *p, FILE *f, MotPoses *mot_poses)
 {
     Joueur *j1 = &p->tab_joueurs[0];
     Joueur *j2 = &p->tab_joueurs[1];
@@ -42,16 +43,16 @@ void boucleDeJeu(Partie *p, FILE *f)
         scanf("%5s", motJ1);
         nettoyer_stdin();
     }
-    joueurPose(j1, motJ1);
+    joueurPose(j1, motJ1, mot_poses);
 
     Chevalet motJ2[TAILLE_PREMIER_MOT + 1] = {0};
-    while (!mainContientChaine(&j2->main, motJ2) || !verifierMotDepart(motJ2, f))
+    while (!mainContientChaine(&j2->main, motJ2) || !verifierMotDepart(motJ2, f) || !motDejaPose(mot_poses, motJ2))
     {
         printf("2> ");
         scanf("%5s", motJ2);
         nettoyer_stdin();
     }
-    joueurPose(j2, motJ2);
+    joueurPose(j2, motJ2, mot_poses);
 
     printf("1 : ");
     afficheMain(&j1->main);
@@ -70,7 +71,7 @@ int verifierMotDepart(const char *mot, FILE *f)
         return 0;
     }
 
-    if (!dictionnaire_contient(mot, f))
+    if (!dictionnaireContient(mot, f))
     {
         return 0;
     }
@@ -85,10 +86,23 @@ int verifierMot(const char *mot, FILE *f)
         return 0;
     }
 
-    if (!dictionnaire_contient(mot, f))
-    {
-        return 0;
-    }
+    if (motDejaPose)
+        if (!dictionnaireContient(mot, f))
+        {
+            return 0;
+        }
 
+    return 1;
+}
+
+int motDejaPose(const MotPoses *mot_poses, const char *mot)
+{
+    for (int i = 0; i < mot_poses->nb_elements; ++i)
+    {
+        if (strcmp(mot_poses->tab_mots[i], mot) == 0)
+        {
+            return 0;
+        }
+    }
     return 1;
 }

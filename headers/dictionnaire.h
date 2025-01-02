@@ -9,4 +9,4 @@
  * @param mot Le mot qui sera cherché dans le dictionnaire
  * @return int
  */
-int dictionnaire_contient(const char *mot, FILE *f);
+int dictionnaireContient(const char *mot, FILE *f);

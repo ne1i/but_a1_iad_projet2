@@ -2,6 +2,7 @@
 
 #include "joueur.h"
 #include "rail.h"
+#include "utils.h"
 
 enum
 {
@@ -36,14 +37,34 @@ void initPartie(Partie *p);
  * @brief Execute une partie jusqu'à sa fin
  *
  * @param p Les informations de la partie
+ * @param f Dictionnaire utilisé
+ * @param mot_poses Liste des mots posés
  */
-void boucleDeJeu(Partie *p, FILE *f);
+void boucleDeJeu(Partie *p, FILE *f, MotPoses *mot_poses);
+
+/**
+ * @brief Vérifie si le mot saisi est valide (sa longueur est de moins de 8 lettres et il est pas dans le dictionnaire
+ * ou les lettres détenues par le joueur ne sont pas suffisantes ou il a déjà été posé)
+ *
+ * @param mot
+ * @param f Dictionnaire utilisé
+ */
+int verifierMot(const char *mot, FILE *f);
 
 /**
  * @brief Vérifie si le mot saisi est valide (sa longueur est de 4 lettres et il est pas dans le dictionnaire
- * ou les lettres détenues par le joueur ne sont pas suffisantes)
+ * ou les lettres détenues par le joueur ne sont pas suffisantes ou il a déjà été posé)
  *
  * @param mot
+ * @param f Dictionnaire utilisé
  */
-int verifierMot(const char *mot, FILE *f);
 int verifierMotDepart(const char *mot, FILE *f);
+
+/**
+ * @brief Vérifie si un mot a déjà été joué dans la partie
+ *
+ * @param mot_poses Tableau dynamique des mots posés
+ * @param mot mot a vérifier
+ * @return int
+ */
+int motDejaPose(const MotPoses *mot_poses, const char *mot);
