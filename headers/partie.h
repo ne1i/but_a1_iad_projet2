@@ -48,8 +48,9 @@ void boucleDeJeu(Partie *p, FILE *f, MotPoses *mot_poses);
  *
  * @param mot
  * @param f Dictionnaire utilisé
+ * @param mot_poses Liste des mots déjà posés
  */
-int verifierMot(const char *mot, FILE *f);
+int verifierMot(const char *mot, FILE *f, MotPoses *mot_poses);
 
 /**
  * @brief Vérifie si le mot saisi est valide (sa longueur est de 4 lettres et il est pas dans le dictionnaire
@@ -57,11 +58,12 @@ int verifierMot(const char *mot, FILE *f);
  *
  * @param mot
  * @param f Dictionnaire utilisé
+ * @param mot_poses Liste des mots posés
  */
-int verifierMotDepart(const char *mot, FILE *f);
+int verifierMotDepart(const char *mot, FILE *f, MotPoses *mot_poses);
 
 /**
- * @brief Vérifie si un mot a déjà été joué dans la partie
+ * @brief Renvoie 1 si un mot a déjà été joué dans la partie, renvoie 0 sinon
  *
  * @param mot_poses Tableau dynamique des mots posés
  * @param mot mot a vérifier

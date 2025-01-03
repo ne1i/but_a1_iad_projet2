@@ -36,59 +36,46 @@ void boucleDeJeu(Partie *p, FILE *f, MotPoses *mot_poses)
     afficherMain(&j2->main);
     printf("\n");
 
-    Chevalet motJ1[TAILLE_PREMIER_MOT + 1] = {0};
-    while (!mainContientChaine(&j1->main, motJ1) || !verifierMotDepart(motJ1, f))
-    {
-        printf("1> ");
-        scanf("%5s", motJ1);
-        nettoyer_stdin();
-    }
-    joueurPose(j1, motJ1, mot_poses, &p->rail);
-
-    Chevalet motJ2[TAILLE_PREMIER_MOT + 1] = {0};
-    while (!mainContientChaine(&j2->main, motJ2) || !verifierMotDepart(motJ2, f) || !motDejaPose(mot_poses, motJ2))
-    {
-        printf("2> ");
-        scanf("%5s", motJ2);
-        nettoyer_stdin();
-    }
-    joueurPose(j2, motJ2, mot_poses, &p->rail);
+    joueurPose(j1, mot_poses, &p->rail, f, 1);
+    joueurPose(j2, mot_poses, &p->rail, f, 2);
 
     printf("1 : ");
     afficherMain(&j1->main);
     printf("2 : ");
     afficherMain(&j2->main);
     printf("\n");
-    remplirRail(&p->rail, motJ1, motJ2);
+    remplirRail(&p->rail, mot_poses->tab_mots[0], mot_poses->tab_mots[1]);
     afficherRail(&p->rail);
     while (1)
     {
     }
 }
 
-int verifierMotDepart(const char *mot, FILE *f)
+int verifierMotDepart(const char *mot, FILE *f, MotPoses *mot_poses)
 {
     if (strlen(mot) != TAILLE_PREMIER_MOT)
     {
         return 0;
     }
-
-    if (!dictionnaireContient(mot, f))
+    if (!motDejaPose(mot_poses, mot))
     {
-        return 0;
+        if (!dictionnaireContient(mot, f))
+        {
+            return 0;
+        }
     }
 
     return 1;
 }
 
-int verifierMot(const char *mot, FILE *f)
+int verifierMot(const char *mot, FILE *f, MotPoses *mot_poses)
 {
     if (strlen(mot) > NB_CHEVALET_RAIL)
     {
         return 0;
     }
 
-    if (motDejaPose)
+    if (!motDejaPose(mot_poses, mot))
         if (!dictionnaireContient(mot, f))
         {
             return 0;

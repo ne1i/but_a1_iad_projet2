@@ -21,6 +21,9 @@ void initJoueur(Joueur *j, Main m);
  * @brief Retire les chevalets qui composent le mot de la main du joueur
  *
  * @param j joueur affecté
- * @param mot mot qui sera retiré de la main du joueur
+ * @param mot_poses Liste des mots joués
+ * @param rail Rail de la partie
+ * @param f Dictionnaire de la partie
+ * @param numero_joueur Numero du joueur (1 ou 2)
  */
-void joueurPose(Joueur *j, const char *mot, MotPoses *mot_poses, Rail *rail);
+void joueurPose(Joueur *j, MotPoses *mot_poses, Rail *rail, FILE *f, int numero_joueur);

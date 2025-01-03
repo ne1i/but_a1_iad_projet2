@@ -14,6 +14,10 @@ int dictionnaireContient(const char *mot, FILE *f)
         {
             return 1;
         }
+        if (strcmp(mot_dico, mot) > 0) // on a dépassé les mots qui commencent par la même lettre que le parametre mot, donc inutile de continuer
+        {
+            return 0;
+        }
     }
     return 0;
 }

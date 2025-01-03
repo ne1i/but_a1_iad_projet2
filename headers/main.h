@@ -4,7 +4,7 @@
 
 enum
 {
-    MAX_NB_CHEVALET_MAIN = 20,
+    MAX_NB_CHEVALET_MAIN = 16,
     NB_CHEVALET_INITIAL_MAIN = 12
 };
 
