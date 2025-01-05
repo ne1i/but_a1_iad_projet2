@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdlib.h>
+
 enum
 {
     NB_CARACTERES_ASCII = 128
@@ -50,3 +52,19 @@ int ajouterMot(MotPoses *mot_poses, const char *mot);
  * @param s string qui sera inversée
  */
 char *inverseStr(char *s);
+
+/**
+ * @brief Compare deux caractères a et b, renvoie un nombre positif si a est plus petit que b, un nombre négatif si b est plus petit que a, 0 si ils sont égaux
+ *
+ * @param a caractère
+ * @param b caractère
+ * @return int
+ */
+int comparerChars(const void *a, const void *b);
+
+/**
+ * @brief Trie la chaine de caractère str
+ *
+ * @param str chaine de caractère
+ */
+void trierStr(char *str);

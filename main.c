@@ -22,6 +22,7 @@ void initMain(Main *m, Paquet *p)
 
     m->nb_chevalet_restants = NB_CHEVALET_INITIAL_MAIN;
     p->nb_chevalet_restants -= NB_CHEVALET_INITIAL_MAIN;
+    trierStr(m->chevalets);
 }
 
 void afficherMain(const Main *m)

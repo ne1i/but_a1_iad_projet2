@@ -44,3 +44,5 @@ void remplirRail(Rail *rail, const char *mot1, const char *mot2);
  * @param cote Côté (R pour recto ou V pour verso)
  */
 void ajouterMotRail(Rail *rail, const char *mot, char cote);
+
+int railContient(const Rail *rail, Chevalet *chaine);

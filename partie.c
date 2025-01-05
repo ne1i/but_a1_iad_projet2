@@ -27,11 +27,11 @@ void initPartie(Partie *p)
 
 void boucleDeJeu(Partie *p, FILE *f, MotPoses *mot_poses)
 {
-    int nb_joueur_courant;
+    int nb_joueur_courant = 1;
     Joueur *j1 = &p->tab_joueurs[0];
     Joueur *j2 = &p->tab_joueurs[1];
     Joueur *joueur_courant = j1;
-
+    // joueurPose(joueur_courant, mot_poses, &p->rail, f, nb_joueur_courant);
     printf("1 : ");
     afficherMain(&j1->main);
     printf("2 : ");

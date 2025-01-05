@@ -17,7 +17,9 @@ typedef struct
 typedef struct
 {
     char recto_verso;
-    char mot[TAILLE_MAX_COUP];
+    Chevalet partie_rail[TAILLE_MAX_COUP];
+    Chevalet partie_main[TAILLE_MAX_COUP];
+    Chevalet mot[NB_CHEVALET_RAIL + 1];
 } Coup;
 
 /**
@@ -48,3 +50,11 @@ void joueurPoseDepart(Joueur *j, MotPoses *mot_poses, Rail *rail, FILE *f, int n
  * @param numero_joueur Numero du joueur (1 ou 2)
  */
 void joueurPose(Joueur *j, MotPoses *mot_poses, Rail *rail, FILE *f, int numero_joueur);
+
+/**
+ * @brief Répartit le contenu de mot dans c
+ *
+ * @param c
+ * @param mot
+ */
+void repartirCoup(Coup *c, char *mot);

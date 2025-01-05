@@ -98,3 +98,14 @@ char *inverseStr(char *s)
     }
     return strInv;
 }
+
+int comparerChars(const void *a, const void *b)
+{
+    return (*(char *)a - *(char *)b);
+}
+
+void trierStr(char *str)
+{
+    int len = strlen(str);
+    qsort(str, len, sizeof(char), comparerChars);
+}
