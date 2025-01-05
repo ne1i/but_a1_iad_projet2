@@ -57,12 +57,15 @@ int verifierMotDepart(const char *mot, FILE *f, MotPoses *mot_poses)
     {
         return 0;
     }
-    if (!motDejaPose(mot_poses, mot))
+
+    if (motDejaPose(mot_poses, mot))
     {
-        if (!dictionnaireContient(mot, f))
-        {
-            return 0;
-        }
+        return 0;
+    }
+
+    if (!dictionnaireContient(mot, f))
+    {
+        return 0;
     }
 
     return 1;
@@ -75,12 +78,15 @@ int verifierMot(const char *mot, FILE *f, MotPoses *mot_poses)
         return 0;
     }
 
-    if (!motDejaPose(mot_poses, mot))
-        if (!dictionnaireContient(mot, f))
-        {
-            return 0;
-        }
+    if (motDejaPose(mot_poses, mot))
+    {
+        return 0;
+    }
 
+    if (!dictionnaireContient(mot, f))
+    {
+        return 0;
+    }
     return 1;
 }
 
@@ -90,8 +96,8 @@ int motDejaPose(const MotPoses *mot_poses, const char *mot)
     {
         if (strcmp(mot_poses->tab_mots[i], mot) == 0)
         {
-            return 0;
+            return 1;
         }
     }
-    return 1;
+    return 0;
 }
