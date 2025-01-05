@@ -87,6 +87,11 @@ char *inverseStr(char *s)
 
     int len = strlen(s);
     char *strInv = (char *)calloc(len + 1, sizeof(char));
+    if (strInv == NULL)
+    {
+        puts("Erreur dans l'allocation de mémoire");
+        return NULL;
+    }
     for (int i = 0; i < len; ++i)
     {
         strInv[i] = s[len - 1 - i];

@@ -27,8 +27,10 @@ void initPartie(Partie *p)
 
 void boucleDeJeu(Partie *p, FILE *f, MotPoses *mot_poses)
 {
+    int nb_joueur_courant;
     Joueur *j1 = &p->tab_joueurs[0];
     Joueur *j2 = &p->tab_joueurs[1];
+    Joueur *joueur_courant = j1;
 
     printf("1 : ");
     afficherMain(&j1->main);
@@ -36,18 +38,26 @@ void boucleDeJeu(Partie *p, FILE *f, MotPoses *mot_poses)
     afficherMain(&j2->main);
     printf("\n");
 
-    joueurPose(j1, mot_poses, &p->rail, f, 1);
-    joueurPose(j2, mot_poses, &p->rail, f, 2);
-
-    printf("1 : ");
-    afficherMain(&j1->main);
-    printf("2 : ");
-    afficherMain(&j2->main);
+    joueurPoseDepart(j1, mot_poses, &p->rail, f, 1);
+    joueurPoseDepart(j2, mot_poses, &p->rail, f, 2);
     printf("\n");
     remplirRail(&p->rail, mot_poses->tab_mots[0], mot_poses->tab_mots[1]);
-    afficherRail(&p->rail);
-    while (1)
+    if (strcmp(mot_poses->tab_mots[0], mot_poses->tab_mots[1]) < 0) // le joueur ayant posé le plus petit mot joue en premier
     {
+        nb_joueur_courant = 1;
+        joueur_courant = j1;
+    }
+
+    else
+    {
+        nb_joueur_courant = 2;
+        joueur_courant = j2;
+    }
+
+    afficherEtatPartie(p);
+    while (j1->main.nb_chevalet_restants != 0 || j2->main.nb_chevalet_restants != 0)
+    {
+        joueurPose(joueur_courant, mot_poses, &p->rail, f, nb_joueur_courant);
     }
 }
 
@@ -100,4 +110,14 @@ int motDejaPose(const MotPoses *mot_poses, const char *mot)
         }
     }
     return 0;
+}
+
+void afficherEtatPartie(Partie *p)
+{
+    printf("1 : ");
+    afficherMain(&p->tab_joueurs[0].main);
+    printf("2 : ");
+    afficherMain(&p->tab_joueurs[1].main);
+    afficherRail(&p->rail);
+    printf("\n");
 }

@@ -70,3 +70,10 @@ int verifierMotDepart(const char *mot, FILE *f, MotPoses *mot_poses);
  * @return int
  */
 int motDejaPose(const MotPoses *mot_poses, const char *mot);
+
+/**
+ * @brief Affiche l'état actuel de la partie (main des joueurs et rail)
+ *
+ * @param p partie
+ */
+void afficherEtatPartie(Partie *p);
