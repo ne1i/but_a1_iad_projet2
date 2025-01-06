@@ -77,3 +77,15 @@ int motDejaPose(const MotPoses *mot_poses, const char *mot);
  * @param p partie
  */
 void afficherEtatPartie(Partie *p);
+
+/**
+ * @brief Renvoie 1 si le coup est jouable, 0 sinon
+ *
+ * @param c coup joué
+ * @param m main du jour qui fait le coup
+ * @param rail rail de la partie
+ * @param f dictionnaire
+ * @param mot_poses liste des mots posés
+ * @return int
+ */
+int verifierCoup(const Coup *c, const Main *m, const Rail *rail, FILE *f, MotPoses *mot_poses);

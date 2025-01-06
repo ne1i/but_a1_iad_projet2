@@ -60,12 +60,85 @@ void ajouterMotRail(Rail *rail, const char *mot, char cote)
 int railContient(const Rail *rail, Chevalet *chaine, char recto_verso, char gauche_droite)
 {
     int len = strlen(chaine);
-    if (recto_verso == 'R')
+    int lenRail = NB_CHEVALET_RAIL;
+
+    const Chevalet *cible = (recto_verso == 'R') ? rail->chevalets_recto : rail->chevalets_verso;
+
+    if (gauche_droite == 'G')
     {
-        for (int i = 0;)
+
+        for (int i = 0; i < len; ++i)
+        {
+            if (cible[i] != chaine[i])
+            {
+                return 0;
+            }
+        }
     }
-    if (recto_verso == 'V')
+    else if (gauche_droite == 'D')
     {
+
+        for (int i = 0; i < len; ++i)
+        {
+            if (cible[lenRail - len + i] != chaine[i])
+            {
+                return 0;
+            }
+        }
     }
-    return 0;
+    else
+    {
+
+        return 0;
+    }
+
+    return 1;
+}
+
+char *ejecterRail(Rail *rail, Chevalet *chaine, char recto_verso, char gauche_droite)
+{
+    int len = strlen(chaine);
+    int lenRail = NB_CHEVALET_RAIL;
+    Chevalet *chevalets_ejectes = (Chevalet *)calloc(len, sizeof(char));
+    if (chevalets_ejectes == NULL)
+    {
+        puts("Erreur dans l'allocation de mémoire");
+        return NULL;
+    }
+
+    Chevalet *cible = (recto_verso == 'R') ? rail->chevalets_recto : rail->chevalets_verso;
+
+    if (gauche_droite == 'G')
+    {
+
+        for (int i = 0; i < len; ++i)
+        {
+            chevalets_ejectes[i] = cible[lenRail - len + i];
+        }
+        for (int i = lenRail - 1; i >= len; --i)
+        {
+            cible[i] = cible[i - len];
+        }
+        for (int i = 0; i < len; ++i)
+        {
+            cible[i] = chaine[i];
+        }
+    }
+    else if (gauche_droite == 'D')
+    {
+
+        for (int i = 0; i < len; ++i)
+        {
+            chevalets_ejectes[i] = cible[i];
+        }
+        for (int i = 0; i < lenRail - len; ++i)
+        {
+            cible[i] = cible[i + len];
+            for (int i = 0; i < len; ++i)
+            {
+                cible[lenRail - len + i] = chaine[i];
+            }
+        }
+        return chevalets_ejectes;
+    }
 }

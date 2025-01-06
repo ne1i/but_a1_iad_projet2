@@ -121,3 +121,28 @@ void afficherEtatPartie(Partie *p)
     afficherRail(&p->rail);
     printf("\n");
 }
+
+int verifierCoup(const Coup *c, const Main *m, const Rail *rail, FILE *f, MotPoses *mot_poses)
+{
+    if (strlen(c->partie_main) == 0)
+    {
+        return 0;
+    }
+
+    if (!mainContientChaine(m, c->partie_main))
+    {
+        return 0;
+    }
+
+    if (!railContient(rail, c->partie_rail, c->recto_verso, c->gauche_droite))
+    {
+        return 0;
+    }
+
+    if (!verifierMot(c->mot, f, mot_poses))
+    {
+        return 0;
+    }
+
+    return 1;
+}

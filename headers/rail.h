@@ -36,20 +36,32 @@ void afficherRail(const Rail *rail);
  */
 void remplirRail(Rail *rail, const char *mot1, const char *mot2);
 
-/**
- * @brief Ajoute un mot au rail sans vérification
- *
- * @param rail
- * @param mot mot qui sera ajouté
- * @param cote Côté (R pour recto ou V pour verso)
- */
-void ajouterMotRail(Rail *rail, const char *mot, char cote);
+// /**
+//  * @brief Ajoute un mot au rail sans vérification
+//  *
+//  * @param rail
+//  * @param mot mot qui sera ajouté
+//  * @param cote Côté (R pour recto ou V pour verso)
+//  */
+// void ajouterMotRail(Rail *rail, const char *mot, char cote);
 
 /**
  * @brief Renvoie 1 si le rail contient la chaine exacte
  *
  * @param rail rail
  * @param chaine chaine
+ * @param recto_verso 'R' ou 'V'
+ * @param gauche_droite 'G' ou 'D'
  * @return int
  */
 int railContient(const Rail *rail, Chevalet *chaine, char recto_verso, char gauche_droite);
+
+/**
+ * @brief Ejecte la chaine de caractère du rail et renvoie la chaine de caractère éjectée
+ *
+ * @param rail rail
+ * @param chaine chaine de caractère
+ * @param recto_verso 'R' ou 'V'
+ * @param gauche_droite 'G' ou 'D'
+ */
+char *ejecterRail(Rail *rail, Chevalet *chaine, char recto_verso, char gauche_droite);

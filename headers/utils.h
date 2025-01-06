@@ -68,3 +68,11 @@ int comparerChars(const void *a, const void *b);
  * @param str chaine de caractère
  */
 void trierStr(char *str);
+
+/**
+ * @brief Supprime un caractère d'une chaine à un indice donné et décale tout les éléments en conséquence
+ *
+ * @param str chaine de caractère
+ * @param i indice du caractère à supprimer
+ */
+void supprimerChar(char *str, int i);

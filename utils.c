@@ -109,3 +109,19 @@ void trierStr(char *str)
     int len = strlen(str);
     qsort(str, len, sizeof(char), comparerChars);
 }
+
+void supprimerChar(char *str, int i)
+{
+
+    int len = strlen(str);
+    if (i < 0 || i > len)
+    {
+        puts("L'indice i n'est pas valable ( utils.c -> supprimerChar() )");
+        return;
+    }
+    for (; i < len - 1; ++i)
+    {
+        str[i] = str[i + 1];
+    }
+    str[len - 1] = 0;
+}
