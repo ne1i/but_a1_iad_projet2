@@ -70,6 +70,7 @@ void repartirCoup(Coup *c, char *chaine)
         strcpy(temp, c->partie_rail);                          // on sait que la partie rail est au début de la chaine donc on l'ajoute en premier
         strcpy(&temp[strlen(c->partie_rail)], c->partie_main); // puis on concatène la partie qui vient de la main du joueur
         strcpy(c->mot, temp);
+        c->gauche_droite = 'G';
     }
 
     if (chaine[len - 1] == ')')
@@ -92,6 +93,6 @@ void repartirCoup(Coup *c, char *chaine)
         strcpy(temp, c->partie_main);                          // puis on concatène la partie qui vient du rail
         strcpy(&temp[strlen(c->partie_main)], c->partie_rail); // on sait que la partie main est au début de la chaine donc on l'ajoute en premier
         strcpy(c->mot, temp);
-        int a = 0;
+        c->gauche_droite = 'D';
     }
 }

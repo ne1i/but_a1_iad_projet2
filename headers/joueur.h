@@ -17,6 +17,7 @@ typedef struct
 typedef struct
 {
     char recto_verso;
+    char gauche_droite;
     Chevalet partie_rail[TAILLE_MAX_COUP];
     Chevalet partie_main[TAILLE_MAX_COUP];
     Chevalet mot[NB_CHEVALET_RAIL + 1];

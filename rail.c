@@ -56,3 +56,16 @@ void ajouterMotRail(Rail *rail, const char *mot, char cote)
     {
     }
 }
+
+int railContient(const Rail *rail, Chevalet *chaine, char recto_verso, char gauche_droite)
+{
+    int len = strlen(chaine);
+    if (recto_verso == 'R')
+    {
+        for (int i = 0;)
+    }
+    if (recto_verso == 'V')
+    {
+    }
+    return 0;
+}
