@@ -44,13 +44,14 @@ void joueurPoseDepart(Joueur *j, MotPoses *mot_poses, Rail *rail, FILE *f, int n
 /**
  * @brief Retire les chevalets qui composent le mot de la main du joueur et les place dans le rail
  *
- * @param j Joueur affecté
+ * @param j_actif Joueur affecté
+ * @param j_inactif Joueur qui va recevoir les chevalets éjectés par le rail
  * @param mot_poses Liste des mots joués
  * @param rail Rail de la partie
  * @param f Dictionnaire de la partie
  * @param numero_joueur Numero du joueur (1 ou 2)
  */
-void joueurPose(Joueur *j, MotPoses *mot_poses, Rail *rail, FILE *f, int numero_joueur);
+void joueurPose(Joueur *j_actif, Joueur *j_inactif, MotPoses *mot_poses, Rail *rail, FILE *f, int numero_joueur);
 
 /**
  * @brief Répartit le contenu de mot dans c

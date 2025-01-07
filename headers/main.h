@@ -44,3 +44,11 @@ int mainContientChaine(const Main *m, const char *chaine);
  * @param c Chevalet qui sera supprimé de la main
  */
 void retirerChevaletMain(Main *m, const Chevalet c);
+
+/**
+ * @brief Ajoute la chaine à la main du joueur puis la trie
+ *
+ * @param m Main du joueur
+ * @param chaine Chevalets à ajouter à la main
+ */
+void ajouterMain(Main *m, Chevalet *chaine);

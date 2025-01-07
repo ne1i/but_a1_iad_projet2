@@ -46,7 +46,7 @@ void remplirRail(Rail *rail, const char *mot1, const char *mot2);
 // void ajouterMotRail(Rail *rail, const char *mot, char cote);
 
 /**
- * @brief Renvoie 1 si le rail contient la chaine exacte
+ * @brief Renvoie 1 si le rail contient la chaine exacte, 0 sinon
  *
  * @param rail rail
  * @param chaine chaine

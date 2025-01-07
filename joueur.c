@@ -27,11 +27,12 @@ void joueurPoseDepart(Joueur *j, MotPoses *mot_poses, Rail *rail, FILE *f, int n
     ajouterMot(mot_poses, mot);
 }
 
-void joueurPose(Joueur *j, MotPoses *mot_poses, Rail *rail, FILE *f, int numero_joueur)
+void joueurPose(Joueur *j_actif, Joueur *j_inactif, MotPoses *mot_poses, Rail *rail, FILE *f, int numero_joue)
 {
+
     Coup c = {0};
     Chevalet chaine[TAILLE_MAX_COUP];
-    while (!verifierCoup(&c, &j->main, rail, f, mot_poses))
+    while (!verifierCoup(&c, &j_actif->main, rail, f, mot_poses))
     {
         printf("%d> ", numero_joueur);
         scanf("%c", &c.recto_verso);
@@ -41,10 +42,11 @@ void joueurPose(Joueur *j, MotPoses *mot_poses, Rail *rail, FILE *f, int numero_
         repartirCoup(&c, chaine);
     }
     ajouterMot(mot_poses, c.mot);
+    ajouterMain(&j_actif->main), ;
 
     for (int i = 0; i < strlen(c.mot); ++i)
     {
-        retirerChevaletMain(&j->main, c.mot[i]);
+        retirerChevaletMain(&j_actif->main, c.mot[i]);
     }
 }
 

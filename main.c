@@ -71,3 +71,10 @@ void retirerChevaletMain(Main *m, const Chevalet c)
     --m->nb_chevalet_restants;
     m->chevalets[m->nb_chevalet_restants] = 0;
 }
+
+void ajouterMain(Main *m, Chevalet *chaine)
+{
+    strcpy(&m->chevalets[m->nb_chevalet_restants], chaine);
+    trierStr(m->chevalets);
+    m->nb_chevalet_restants += strlen(chaine);
+}
