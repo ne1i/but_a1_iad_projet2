@@ -54,7 +54,7 @@ void remplirRail(Rail *rail, const char *mot1, const char *mot2);
  * @param gauche_droite 'G' ou 'D'
  * @return int
  */
-int railContient(const Rail *rail, Chevalet *chaine, char recto_verso, char gauche_droite);
+int railContient(const Rail *rail, const Chevalet *chaine, const char recto_verso, const char gauche_droite);
 
 /**
  * @brief Ejecte la chaine de caractère du rail et renvoie la chaine de caractère éjectée
@@ -64,4 +64,4 @@ int railContient(const Rail *rail, Chevalet *chaine, char recto_verso, char gauc
  * @param recto_verso 'R' ou 'V'
  * @param gauche_droite 'G' ou 'D'
  */
-char *ejecterRail(Rail *rail, Chevalet *chaine, char recto_verso, char gauche_droite);
+Chevalet *ejecterRail(Rail *rail, Chevalet *chaine, char recto_verso, char gauche_droite);

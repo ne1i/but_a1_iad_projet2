@@ -57,7 +57,7 @@ void ajouterMotRail(Rail *rail, const char *mot, char cote)
     }
 }
 
-int railContient(const Rail *rail, Chevalet *chaine, char recto_verso, char gauche_droite)
+int railContient(const Rail *rail, const Chevalet *chaine, const char recto_verso, const char gauche_droite)
 {
     int len = strlen(chaine);
     int lenRail = NB_CHEVALET_RAIL;
@@ -95,7 +95,7 @@ int railContient(const Rail *rail, Chevalet *chaine, char recto_verso, char gauc
     return 1;
 }
 
-char *ejecterRail(Rail *rail, Chevalet *chaine, char recto_verso, char gauche_droite)
+Chevalet *ejecterRail(Rail *rail, Chevalet *chaine, char recto_verso, char gauche_droite)
 {
     int len = strlen(chaine);
     int lenRail = NB_CHEVALET_RAIL;
@@ -107,6 +107,7 @@ char *ejecterRail(Rail *rail, Chevalet *chaine, char recto_verso, char gauche_dr
     }
 
     Chevalet *cible = (recto_verso == 'R') ? rail->chevalets_recto : rail->chevalets_verso;
+    Chevalet *autre = (recto_verso == 'R') ? rail->chevalets_verso : rail->chevalets_recto;
 
     if (gauche_droite == 'G')
     {
@@ -131,14 +132,20 @@ char *ejecterRail(Rail *rail, Chevalet *chaine, char recto_verso, char gauche_dr
         {
             chevalets_ejectes[i] = cible[i];
         }
+
         for (int i = 0; i < lenRail - len; ++i)
         {
             cible[i] = cible[i + len];
-            for (int i = 0; i < len; ++i)
-            {
-                cible[lenRail - len + i] = chaine[i];
-            }
         }
-        return chevalets_ejectes;
+
+        for (int i = 0; i < len; ++i)
+        {
+            cible[lenRail - len + i] = chaine[i];
+        }
     }
+    char *temp = inverseStr(cible);
+    strcpy(autre, temp);
+    free(temp);
+
+    return chevalets_ejectes;
 }

@@ -27,7 +27,7 @@ void joueurPoseDepart(Joueur *j, MotPoses *mot_poses, Rail *rail, FILE *f, int n
     ajouterMot(mot_poses, mot);
 }
 
-void joueurPose(Joueur *j_actif, Joueur *j_inactif, MotPoses *mot_poses, Rail *rail, FILE *f, int numero_joue)
+void joueurPose(Joueur *j_actif, Joueur *j_inactif, MotPoses *mot_poses, Rail *rail, FILE *f, int numero_joueur)
 {
 
     Coup c = {0};
@@ -42,12 +42,14 @@ void joueurPose(Joueur *j_actif, Joueur *j_inactif, MotPoses *mot_poses, Rail *r
         repartirCoup(&c, chaine);
     }
     ajouterMot(mot_poses, c.mot);
-    ajouterMain(&j_actif->main), ;
+    Chevalet *chevalets_ejectes = ejecterRail(rail, c.partie_main, c.recto_verso, c.gauche_droite);
+    ajouterMain(&j_inactif->main, chevalets_ejectes);
 
-    for (int i = 0; i < strlen(c.mot); ++i)
+    for (int i = 0; i < strlen(c.partie_main); ++i)
     {
-        retirerChevaletMain(&j_actif->main, c.mot[i]);
+        retirerChevaletMain(&j_actif->main, c.partie_main[i]);
     }
+    printf("\n");
 }
 
 void repartirCoup(Coup *c, char *chaine)
@@ -72,7 +74,7 @@ void repartirCoup(Coup *c, char *chaine)
         strcpy(temp, c->partie_rail);                          // on sait que la partie rail est au début de la chaine donc on l'ajoute en premier
         strcpy(&temp[strlen(c->partie_rail)], c->partie_main); // puis on concatène la partie qui vient de la main du joueur
         strcpy(c->mot, temp);
-        c->gauche_droite = 'G';
+        c->gauche_droite = 'D';
     }
 
     if (chaine[len - 1] == ')')
@@ -95,6 +97,6 @@ void repartirCoup(Coup *c, char *chaine)
         strcpy(temp, c->partie_main);                          // puis on concatène la partie qui vient du rail
         strcpy(&temp[strlen(c->partie_main)], c->partie_rail); // on sait que la partie main est au début de la chaine donc on l'ajoute en premier
         strcpy(c->mot, temp);
-        c->gauche_droite = 'D';
+        c->gauche_droite = 'G';
     }
 }
