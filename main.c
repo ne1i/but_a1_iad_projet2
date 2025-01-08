@@ -79,6 +79,13 @@ void ajouterMain(Main *m, Chevalet *chaine)
     m->nb_chevalet_restants += strlen(chaine);
 }
 
+void ajouterChevaletMain(Main *m, Chevalet c)
+{
+    m->chevalets[m->nb_chevalet_restants] = c;
+    trierStr(m->chevalets);
+    m->nb_chevalet_restants++;
+}
+
 void piocher(Main *m, Paquet *p, Chevalet c)
 {
     if (!mainContientChaine(m, &c))
@@ -87,6 +94,21 @@ void piocher(Main *m, Paquet *p, Chevalet c)
     }
     retirerChevaletMain(m, c);
     Chevalet c_pioche = p->chevalets[p->nb_chevalet_restants - 1];
+    p->chevalets[p->nb_chevalet_restants - 1] = 0;
     p->nb_chevalet_restants--;
-    ajouterMain(m, c_pioche);
+    ajouterChevaletMain(m, c_pioche);
+}
+
+int chevaletAEchangerCorrect(const Main *m, Chevalet c)
+{
+    if (c < 'A' || c > 'Z')
+    {
+        return 0;
+    }
+
+    if (!mainContientChaine(m, &c))
+    {
+        return 0;
+    }
+    return 1;
 }

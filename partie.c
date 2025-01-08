@@ -60,7 +60,7 @@ void boucleDeJeu(Partie *p, FILE *f, MotPoses *mot_poses)
     afficherEtatPartie(p);
     while (j1->main.nb_chevalet_restants != 0 || j2->main.nb_chevalet_restants != 0)
     {
-        joueurPose(joueur_courant, joueur_non_courant, mot_poses, &p->rail, f, nb_joueur_courant);
+        joueurPose(joueur_courant, joueur_non_courant, &p->paquet, mot_poses, &p->rail, f, nb_joueur_courant);
         afficherEtatPartie(p);
         if (joueur_courant == j1)
         {

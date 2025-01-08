@@ -27,16 +27,31 @@ void joueurPoseDepart(Joueur *j, MotPoses *mot_poses, Rail *rail, FILE *f, int n
     ajouterMot(mot_poses, mot);
 }
 
-void joueurPose(Joueur *j_actif, Joueur *j_inactif, MotPoses *mot_poses, Rail *rail, FILE *f, int numero_joueur)
+void joueurPose(Joueur *j_actif, Joueur *j_inactif, Paquet *p, MotPoses *mot_poses, Rail *rail, FILE *f, int numero_joueur)
 {
-
+    char intention = 0;
+    Chevalet chevalet_a_echanger = 0;
     Coup c = {0};
     Chevalet chaine[TAILLE_MAX_COUP];
     while (!verifierCoup(&c, &j_actif->main, rail, f, mot_poses))
     {
         printf("%d> ", numero_joueur);
-        scanf("%c", &c.recto_verso);
+        scanf("%c", &intention);
+        if (intention == '-')
+        {
+            scanf("%1s", &chevalet_a_echanger);
+            if (chevaletAEchangerCorrect(&j_actif->main, chevalet_a_echanger))
+            {
+                piocher(&j_actif->main, p, chevalet_a_echanger);
+                nettoyer_stdin();
+                return;
+            }
+            nettoyer_stdin();
+            continue;
+        }
+
         scanf("%11s", chaine);
+        c.recto_verso = intention;
         chaine[TAILLE_MAX_COUP - 1] = 0; // le dernier caractère doit être un \0 pour bien le manipuler plus tard
         nettoyer_stdin();
         repartirCoup(&c, chaine);
