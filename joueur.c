@@ -44,6 +44,7 @@ void joueurPose(Joueur *j_actif, Joueur *j_inactif, MotPoses *mot_poses, Rail *r
     ajouterMot(mot_poses, c.mot);
     Chevalet *chevalets_ejectes = ejecterRail(rail, c.partie_main, c.recto_verso, c.gauche_droite);
     ajouterMain(&j_inactif->main, chevalets_ejectes);
+    free(chevalets_ejectes);
 
     for (int i = 0; i < strlen(c.partie_main); ++i)
     {

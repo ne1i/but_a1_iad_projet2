@@ -78,3 +78,15 @@ void ajouterMain(Main *m, Chevalet *chaine)
     trierStr(m->chevalets);
     m->nb_chevalet_restants += strlen(chaine);
 }
+
+void piocher(Main *m, Paquet *p, Chevalet c)
+{
+    if (!mainContientChaine(m, &c))
+    {
+        return;
+    }
+    retirerChevaletMain(m, c);
+    Chevalet c_pioche = p->chevalets[p->nb_chevalet_restants - 1];
+    p->nb_chevalet_restants--;
+    ajouterMain(m, c_pioche);
+}

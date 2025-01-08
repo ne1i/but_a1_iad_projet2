@@ -29,7 +29,7 @@ void initMain(Main *m, Paquet *p);
 void afficherMain(const Main *m);
 
 /**
- * @brief Renvoie 1 si la main m contient les lettre nécessaires à former la chaine
+ * @brief Renvoie 1 si la main m contient les lettre nécessaires à former la chaine, 0 sinon
  *
  * @param m main dont on vérifie les chevalets
  * @param chaine chaine de caractère d'au plus 8 caractères
@@ -52,3 +52,11 @@ void retirerChevaletMain(Main *m, const Chevalet c);
  * @param chaine Chevalets à ajouter à la main
  */
 void ajouterMain(Main *m, Chevalet *chaine);
+
+/**
+ * @brief Echange le chevalet c s'il est présent dans la main m avec un chevalet aléatoire
+ *
+ * @param m main du joueur
+ * @param c chevalet à échanger
+ */
+void piocher(Main *m, Paquet *p, Chevalet c);
