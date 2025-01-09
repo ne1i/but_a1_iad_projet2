@@ -33,7 +33,7 @@ void boucleDeJeu(Partie *p, FILE *f, MotPoses *mot_poses)
     Joueur *joueur_courant = j1;
     Joueur *joueur_non_courant = j2;
     Joueur *temp = 0;
-    Partie *partie_tour_precedent = (Partie *)calloc(1, sizeof(Partie));
+    Partie partie_tour_precedent = {0};
     printf("1 : ");
     afficherMain(&j1->main);
     printf("2 : ");
@@ -77,7 +77,7 @@ void boucleDeJeu(Partie *p, FILE *f, MotPoses *mot_poses)
             joueur_non_courant = j2;
             nb_joueur_courant = 1;
         }
-        memcpy(partie_tour_precedent, p, sizeof(Partie));
+        partie_tour_precedent = *p;
     }
 }
 
