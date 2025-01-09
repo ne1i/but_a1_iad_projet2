@@ -27,10 +27,10 @@ void joueurPoseDepart(Joueur *j, MotPoses *mot_poses, Rail *rail, FILE *f, int n
     ajouterMot(mot_poses, mot);
 }
 
-void joueurPose(Joueur *j_actif, Joueur *j_inactif, Paquet *p, MotPoses *mot_poses, Rail *rail, FILE *f, int numero_joueur)
+void joueurPose(Joueur *j_actif, Joueur *j_inactif, Paquet *p, MotPoses *mot_poses, Partie *partie_tour_precedent, Rail *rail, FILE *f, int numero_joueur)
 {
-    char intention = 0;
-    Chevalet chevalet_a_echanger = 0;
+    char intention = 0;                                 // R, V ou -
+    Chevalet chevalet_a_echanger[TAILLE_MAX_MOT] = {0}; // 2 pour s'assurer que l'utilisateur rentre 1 seul caractère lors de la pioche
     Coup c = {0};
     Chevalet chaine[TAILLE_MAX_COUP];
     while (!verifierCoup(&c, &j_actif->main, rail, f, mot_poses))
@@ -39,7 +39,8 @@ void joueurPose(Joueur *j_actif, Joueur *j_inactif, Paquet *p, MotPoses *mot_pos
         scanf("%c", &intention);
         if (intention == '-')
         {
-            scanf("%1s", &chevalet_a_echanger);
+            scanf("%29s", &chevalet_a_echanger);
+            chevalet_a_echanger[TAILLE_MAX_MOT - 1] = 0;
             if (chevaletAEchangerCorrect(&j_actif->main, chevalet_a_echanger))
             {
                 piocher(&j_actif->main, p, chevalet_a_echanger);
@@ -50,11 +51,14 @@ void joueurPose(Joueur *j_actif, Joueur *j_inactif, Paquet *p, MotPoses *mot_pos
             continue;
         }
 
-        scanf("%11s", chaine);
-        c.recto_verso = intention;
-        chaine[TAILLE_MAX_COUP - 1] = 0; // le dernier caractère doit être un \0 pour bien le manipuler plus tard
-        nettoyer_stdin();
-        repartirCoup(&c, chaine);
+        if (intention == 'R' || intention == 'V')
+        {
+            scanf("%11s", chaine);
+            c.recto_verso = intention;
+            chaine[TAILLE_MAX_COUP - 1] = 0; // le dernier caractère doit être un \0 pour bien le manipuler plus tard
+            nettoyer_stdin();
+            repartirCoup(&c, chaine);
+        }
     }
     ajouterMot(mot_poses, c.mot);
     Chevalet *chevalets_ejectes = ejecterRail(rail, c.partie_main, c.recto_verso, c.gauche_droite);

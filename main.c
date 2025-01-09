@@ -86,29 +86,35 @@ void ajouterChevaletMain(Main *m, Chevalet c)
     m->nb_chevalet_restants++;
 }
 
-void piocher(Main *m, Paquet *p, Chevalet c)
+void piocher(Main *m, Paquet *p, Chevalet *c)
 {
-    if (!mainContientChaine(m, &c))
+    if (!mainContientChaine(m, c))
     {
         return;
     }
-    retirerChevaletMain(m, c);
+    retirerChevaletMain(m, c[0]);
     Chevalet c_pioche = p->chevalets[p->nb_chevalet_restants - 1];
     p->chevalets[p->nb_chevalet_restants - 1] = 0;
     p->nb_chevalet_restants--;
     ajouterChevaletMain(m, c_pioche);
 }
 
-int chevaletAEchangerCorrect(const Main *m, Chevalet c)
+int chevaletAEchangerCorrect(const Main *m, Chevalet *c)
 {
-    if (c < 'A' || c > 'Z')
+    if (c[0] < 'A' || c[0] > 'Z')
     {
         return 0;
     }
 
-    if (!mainContientChaine(m, &c))
+    if (!mainContientChaine(m, &c[0]))
     {
         return 0;
     }
+
+    if (strlen(c) != 1)
+    {
+        return 0;
+    }
+
     return 1;
 }

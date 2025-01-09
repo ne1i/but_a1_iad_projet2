@@ -67,13 +67,13 @@ void ajouterChevaletMain(Main *m, Chevalet c);
  * @param m Main du joueur
  * @param c Chevalet à échanger
  */
-void piocher(Main *m, Paquet *p, Chevalet c);
+void piocher(Main *m, Paquet *p, Chevalet *c);
 
 /**
  * @brief Renvoie 1 si le chevalet c peut être échanger selon la main m, renvoie 0 sinon
  *
  * @param m Main du joueur
- * @param c Chevalet à vérifier
+ * @param c Chevalet(s) à vérifier
  * @return int
  */
-int chevaletAEchangerCorrect(const Main *m, Chevalet c);
+int chevaletAEchangerCorrect(const Main *m, Chevalet *c);

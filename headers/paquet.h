@@ -2,16 +2,28 @@
 
 typedef char Chevalet;
 
+/**
+ * @brief Définit le nombre de chevalet dans le paquet
+ *
+ */
 enum
 {
     MAX_NB_CHEVALET_PAQUET = 88
 };
 
+/**
+ * @brief Définit le nombre de lettre différentes dans le paquet
+ *
+ */
 enum
 {
     NB_LETTRES = 21
 };
 
+/**
+ * @brief Représente un paquet de chevalets (donc la pioche)
+ *
+ */
 typedef struct
 {
     Chevalet chevalets[MAX_NB_CHEVALET_PAQUET];

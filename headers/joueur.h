@@ -12,6 +12,7 @@ enum
 typedef struct
 {
     Main main;
+    int a_fait_signalement;
 } Joueur;
 
 typedef struct
@@ -51,7 +52,7 @@ void joueurPoseDepart(Joueur *j, MotPoses *mot_poses, Rail *rail, FILE *f, int n
  * @param f Dictionnaire de la partie
  * @param numero_joueur Numero du joueur (1 ou 2)
  */
-void joueurPose(Joueur *j_actif, Joueur *j_inactif, Paquet *p, MotPoses *mot_poses, Rail *rail, FILE *f, int numero_joueur);
+void joueurPose(Joueur *j_actif, Joueur *j_inactif, Paquet *p, MotPoses *mot_poses, Partie *partie_tour_precedent, Rail *rail, FILE *f, int numero_joueur);
 
 /**
  * @brief Répartit le contenu de mot dans c

@@ -33,6 +33,7 @@ void boucleDeJeu(Partie *p, FILE *f, MotPoses *mot_poses)
     Joueur *joueur_courant = j1;
     Joueur *joueur_non_courant = j2;
     Joueur *temp = 0;
+    Partie *partie_tour_precedent = (Partie *)calloc(1, sizeof(Partie));
     printf("1 : ");
     afficherMain(&j1->main);
     printf("2 : ");
@@ -60,7 +61,9 @@ void boucleDeJeu(Partie *p, FILE *f, MotPoses *mot_poses)
     afficherEtatPartie(p);
     while (j1->main.nb_chevalet_restants != 0 || j2->main.nb_chevalet_restants != 0)
     {
-        joueurPose(joueur_courant, joueur_non_courant, &p->paquet, mot_poses, &p->rail, f, nb_joueur_courant);
+        j1->a_fait_signalement = 0;
+        j2->a_fait_signalement = 0;
+        joueurPose(joueur_courant, joueur_non_courant, &p->paquet, mot_poses, partie_tour_precedent, &p->rail, f, nb_joueur_courant);
         afficherEtatPartie(p);
         if (joueur_courant == j1)
         {
@@ -74,6 +77,7 @@ void boucleDeJeu(Partie *p, FILE *f, MotPoses *mot_poses)
             joueur_non_courant = j2;
             nb_joueur_courant = 1;
         }
+        memcpy(partie_tour_precedent, p, sizeof(Partie));
     }
 }
 
