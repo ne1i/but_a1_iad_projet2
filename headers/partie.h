@@ -107,15 +107,16 @@ void afficherEtatPartie(Partie *p);
 int verifierCoup(const Coup *c, const Main *m, const Rail *rail, FILE *f, const MotPoses *mot_poses);
 
 /**
- * @brief Gère l'action d'un joueur dans un tour
+ * @brief Gère l'action d'un joueur dans un tour et renvoie 1 si le joueur a fait un signalement correct, 0 sinon
  *
  * @param partie Partie actuelle
  * @param partie_tour_precedent Partie du tour précédent
  * @param mot_poses Tableau des mots posés
  * @param f Dictionnaire
  * @param numero_joueur_actif Numéro du joueur actif
+ * @return int
  */
-void joueurJoue(Partie *partie, Partie *partie_tour_precedent, MotPoses *mot_poses, FILE *f, int numero_joueur_actif);
+int joueurJoue(Partie *partie, Partie *partie_tour_precedent, MotPoses *mot_poses, FILE *f, int numero_joueur_actif);
 
 /**
  * @brief Renvoie 1 si le signalement désigné par les paramètres est correct, 0 sinon

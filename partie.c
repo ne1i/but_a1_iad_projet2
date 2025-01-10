@@ -28,6 +28,7 @@ void initPartie(Partie *p)
 
 void boucleDeJeu(Partie *p, FILE *f, MotPoses *mot_poses)
 {
+    int signalement_correct = 0;
     int nb_joueur_courant = 1;
     Joueur *j1 = &p->tab_joueurs[0];
     Joueur *j2 = &p->tab_joueurs[1];
@@ -64,20 +65,19 @@ void boucleDeJeu(Partie *p, FILE *f, MotPoses *mot_poses)
     {
         j1->a_fait_signalement = 0;
         j2->a_fait_signalement = 0;
-        joueurJoue(p, &partie_tour_precedent, mot_poses, f, nb_joueur_courant);
-        if (joueur_courant == j1)
+        signalement_correct = joueurJoue(p, &partie_tour_precedent, mot_poses, f, nb_joueur_courant);
+        if (joueur_courant == j1 && !signalement_correct)
         {
             joueur_courant = j2;
             joueur_non_courant = j1;
             nb_joueur_courant = 2;
         }
-        else
+        else if (joueur_courant == j2 && !signalement_correct)
         {
             joueur_courant = j1;
             joueur_non_courant = j2;
             nb_joueur_courant = 1;
         }
-        // partie_tour_precedent = *p;
     }
 }
 
@@ -170,7 +170,7 @@ int verifierCoup(const Coup *c, const Main *m, const Rail *rail, FILE *f, const 
     return 1;
 }
 
-void joueurJoue(Partie *partie, Partie *ptp, MotPoses *mot_poses, FILE *f, int numero_joueur_actif)
+int joueurJoue(Partie *partie, Partie *ptp, MotPoses *mot_poses, FILE *f, int numero_joueur_actif)
 {
     int numero_joueur_inactif = numero_joueur_actif == 1 ? 2 : 1;
     int erreur = 1;
@@ -214,7 +214,7 @@ void joueurJoue(Partie *partie, Partie *ptp, MotPoses *mot_poses, FILE *f, int n
 
                 printf("\n");
                 afficherEtatPartie(partie);
-                return;
+                return 0;
             }
             erreur = 0;
             continue;
@@ -239,7 +239,7 @@ void joueurJoue(Partie *partie, Partie *ptp, MotPoses *mot_poses, FILE *f, int n
                 retirerChevaletMain(&j_actif->main, chevalet_a_echanger[0]);
                 printf("\n");
                 afficherEtatPartie(partie);
-                return;
+                return 1;
             }
             memset(&c, 0, sizeof(Coup));
             j_actif->a_fait_signalement = 1;
@@ -277,7 +277,7 @@ void joueurJoue(Partie *partie, Partie *ptp, MotPoses *mot_poses, FILE *f, int n
     }
     printf("\n");
     afficherEtatPartie(partie);
-    if (strlen(mot_poses->tab_mots[mot_poses->nb_elements - 1]) == NB_CHEVALET_RAIL)
+    if (strlen(mot_poses->tab_mots[mot_poses->nb_elements - 1]) == NB_CHEVALET_RAIL && j_actif->main.nb_chevalet_restants != 0) // si c'était ses derniers chevalets, alors il ne défausse pas
     {
         while (!chevaletAEchangerCorrect(&j_actif->main, chevalet_a_echanger))
         {
@@ -289,6 +289,7 @@ void joueurJoue(Partie *partie, Partie *ptp, MotPoses *mot_poses, FILE *f, int n
         printf("\n");
         afficherEtatPartie(partie);
     }
+    return 0;
 }
 
 int signalementCorrect(const Partie *partie, const Partie *ptp, const MotPoses *mot_poses, FILE *f, int numero_joueur_inactif, const Coup *c)
