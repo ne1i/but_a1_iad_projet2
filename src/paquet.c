@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "headers/paquet.h"
+#include "paquet.h"
 
 void initPaquet(Paquet *p)
 {
@@ -38,11 +38,14 @@ void melangePaquet(Paquet *p)
 
 void ajouterChevaletPaquet(Paquet *p, Chevalet c)
 {
-    for (int i = p->nb_chevalet_restants; i > 0; --i)
+    if (p->nb_chevalet_restants >= 0 && p->nb_chevalet_restants < MAX_NB_CHEVALET_PAQUET)
     {
-        p->chevalets[i] = p->chevalets[i - 1];
-    }
+        for (int i = p->nb_chevalet_restants; i > 0; --i)
+        {
+            p->chevalets[i] = p->chevalets[i - 1];
+        }
 
-    p->chevalets[0] = c;
-    p->nb_chevalet_restants++;
+        p->chevalets[0] = c;
+        p->nb_chevalet_restants++;
+    }
 }

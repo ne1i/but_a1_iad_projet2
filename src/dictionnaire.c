@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "headers/dictionnaire.h"
-#include "headers/partie.h"
+#include "partie.h"
 
 int dictionnaireContient(const char *mot, FILE *f)
 {

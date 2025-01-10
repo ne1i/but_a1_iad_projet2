@@ -10,7 +10,7 @@
       "command": "gcc",
       "args": [
         "-g",
-        "${workspaceFolder}/*.c",
+        "${workspaceFolder}/src/*.c",
         "-o",
         "${workspaceFolder}/app.out"
       ],
@@ -34,7 +34,7 @@
         "/Od",
         "/nologo",
         "/Fe${workspaceFolder}\\app.exe",
-        "${workspaceFolder}\\*.c"
+        "${workspaceFolder}\\src\\*.c"
       ],
       "problemMatcher": [
         "$msCompile"

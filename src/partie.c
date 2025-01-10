@@ -2,10 +2,7 @@
 #include <string.h>
 #include <ctype.h>
 
-#include "headers/utils.h"
-#include "headers/partie.h"
-#include "headers/dictionnaire.h"
-#include "headers/paquet.h"
+#include "partie.h"
 
 void initPartie(Partie *p)
 {

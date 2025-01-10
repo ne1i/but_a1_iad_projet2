@@ -2,8 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "headers/rail.h"
-#include "headers/partie.h"
+#include "partie.h"
 
 void initRail(Rail *rail)
 {

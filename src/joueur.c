@@ -1,9 +1,7 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "headers/joueur.h"
-#include "headers/utils.h"
-#include "headers/partie.h"
+#include "partie.h"
 
 void initJoueur(Joueur *j, Main m)
 {

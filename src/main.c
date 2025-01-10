@@ -2,10 +2,7 @@
 #include <string.h>
 #include <limits.h>
 
-#include "headers/utils.h"
-#include "headers/main.h"
-#include "headers/dictionnaire.h"
-#include "headers/partie.h"
+#include "partie.h"
 
 void initMain(Main *m, Paquet *p)
 {
@@ -65,11 +62,11 @@ void retirerChevaletMain(Main *m, const Chevalet c)
             {
                 m->chevalets[j] = m->chevalets[j + 1];
             }
+            --m->nb_chevalet_restants;
+            m->chevalets[m->nb_chevalet_restants] = 0;
             break;
         }
     }
-    --m->nb_chevalet_restants;
-    m->chevalets[m->nb_chevalet_restants] = 0;
 }
 
 void ajouterMain(Main *m, Chevalet *chaine)
@@ -81,9 +78,12 @@ void ajouterMain(Main *m, Chevalet *chaine)
 
 void ajouterChevaletMain(Main *m, Chevalet c)
 {
-    m->chevalets[m->nb_chevalet_restants] = c;
-    trierStr(m->chevalets);
-    m->nb_chevalet_restants++;
+    if (m->nb_chevalet_restants >= 0 && m->nb_chevalet_restants < NB_CHEVALET_INITIAL_MAIN)
+    {
+        m->chevalets[m->nb_chevalet_restants] = c;
+        trierStr(m->chevalets);
+        m->nb_chevalet_restants++;
+    }
 }
 
 void piocher(Main *m, Paquet *p, Chevalet *c)
