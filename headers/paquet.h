@@ -3,7 +3,7 @@
 typedef char Chevalet;
 
 /**
- * @brief Définit le nombre de chevalet dans le paquet
+ * @brief Définit le nombre de chevalet initial dans le paquet
  *
  */
 enum
@@ -42,3 +42,11 @@ void initPaquet(Paquet *p);
  * @param p Paquet qui sera mélangé
  */
 void melangePaquet(Paquet *p);
+
+/**
+ * @brief Ajoute un chevalet au paquet de chevalets
+ *
+ * @param p Paquet de chevalets
+ * @param c Chevalet à ajouter
+ */
+void ajouterChevaletPaquet(Paquet *p, Chevalet c);

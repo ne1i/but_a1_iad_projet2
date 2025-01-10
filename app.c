@@ -6,7 +6,7 @@
 
 int main()
 {
-    FILE *f = fopen(DICT_FILE_NAME, "r");
+    FILE *f = fopen("ods4.txt", "r");
     if (f == NULL)
     {
         printf("fichier non accessible\n");

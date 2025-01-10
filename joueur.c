@@ -27,51 +27,6 @@ void joueurPoseDepart(Joueur *j, MotPoses *mot_poses, Rail *rail, FILE *f, int n
     ajouterMot(mot_poses, mot);
 }
 
-void joueurPose(Joueur *j_actif, Joueur *j_inactif, Paquet *p, MotPoses *mot_poses, Partie *partie_tour_precedent, Rail *rail, FILE *f, int numero_joueur)
-{
-    char intention = 0;                                 // R, V ou -
-    Chevalet chevalet_a_echanger[TAILLE_MAX_MOT] = {0}; // 2 pour s'assurer que l'utilisateur rentre 1 seul caractère lors de la pioche
-    Coup c = {0};
-    Chevalet chaine[TAILLE_MAX_COUP];
-    while (!verifierCoup(&c, &j_actif->main, rail, f, mot_poses))
-    {
-        printf("%d> ", numero_joueur);
-        scanf("%c", &intention);
-        if (intention == '-')
-        {
-            scanf("%29s", &chevalet_a_echanger);
-            chevalet_a_echanger[TAILLE_MAX_MOT - 1] = 0;
-            if (chevaletAEchangerCorrect(&j_actif->main, chevalet_a_echanger))
-            {
-                piocher(&j_actif->main, p, chevalet_a_echanger);
-                nettoyer_stdin();
-                return;
-            }
-            nettoyer_stdin();
-            continue;
-        }
-
-        if (intention == 'R' || intention == 'V')
-        {
-            scanf("%11s", chaine);
-            c.recto_verso = intention;
-            chaine[TAILLE_MAX_COUP - 1] = 0; // le dernier caractère doit être un \0 pour bien le manipuler plus tard
-            nettoyer_stdin();
-            repartirCoup(&c, chaine);
-        }
-    }
-    ajouterMot(mot_poses, c.mot);
-    Chevalet *chevalets_ejectes = ejecterRail(rail, c.partie_main, c.recto_verso, c.gauche_droite);
-    ajouterMain(&j_inactif->main, chevalets_ejectes);
-    free(chevalets_ejectes);
-
-    for (int i = 0; i < strlen(c.partie_main); ++i)
-    {
-        retirerChevaletMain(&j_actif->main, c.partie_main[i]);
-    }
-    printf("\n");
-}
-
 void repartirCoup(Coup *c, char *chaine)
 {
     int len = strlen(chaine);

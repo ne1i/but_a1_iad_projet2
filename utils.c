@@ -7,10 +7,9 @@
 
 void nettoyer_stdin()
 {
-    int c = getchar();
-    while (c != '\n' && c != EOF)
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF)
     {
-        c = getchar();
     }
 }
 

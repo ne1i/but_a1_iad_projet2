@@ -97,6 +97,7 @@ void piocher(Main *m, Paquet *p, Chevalet *c)
     p->chevalets[p->nb_chevalet_restants - 1] = 0;
     p->nb_chevalet_restants--;
     ajouterChevaletMain(m, c_pioche);
+    ajouterChevaletPaquet(p, c[0]);
 }
 
 int chevaletAEchangerCorrect(const Main *m, Chevalet *c)

@@ -35,3 +35,14 @@ void melangePaquet(Paquet *p)
         p->chevalets[rand_ind] = temp;
     }
 }
+
+void ajouterChevaletPaquet(Paquet *p, Chevalet c)
+{
+    for (int i = p->nb_chevalet_restants; i > 0; --i)
+    {
+        p->chevalets[i] = p->chevalets[i - 1];
+    }
+
+    p->chevalets[0] = c;
+    p->nb_chevalet_restants++;
+}

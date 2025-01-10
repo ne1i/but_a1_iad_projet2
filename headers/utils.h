@@ -2,11 +2,19 @@
 
 #include <stdlib.h>
 
+/**
+ * @brief Nombre de caractères dans la table ASCII
+ *
+ */
 enum
 {
     NB_CARACTERES_ASCII = 128
 };
 
+/**
+ * @brief Tableau dynamique des mots posés au cours d'une partie
+ *
+ */
 typedef struct
 {
     int nb_elements;
@@ -47,7 +55,7 @@ int redimensionnerMotPoses(MotPoses *mot_poses, int nvlCapacite);
 int ajouterMot(MotPoses *mot_poses, const char *mot);
 
 /**
- * @brief Renvoie la string s inversée mais ne la modifie pas
+ * @brief Renvoie la string s inversée mais ne la modifie pas (il faut la free par la suite, sinon fuite de mémoire)
  *
  * @param s string qui sera inversée
  */
